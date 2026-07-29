@@ -82,7 +82,7 @@ correspa-ai/
 │   ├── state.py                  # Shared graph state and Email data model (Pydantic)
 │   ├── structure_outputs.py      # Structured output schemas for LLM responses
 │   └── tools/
-│       └── GmailTools.py          # Gmail API wrapper — fetch, read, and draft emails
+│       └── GmailTools.py          # Gmail API wrapper - fetch, read, and draft emails
 ```
 
 ## Getting Started
