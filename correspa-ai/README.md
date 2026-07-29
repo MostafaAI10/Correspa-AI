@@ -49,7 +49,7 @@ Correspa AI addresses this by giving each stage of the response process to a ded
 
 This loop repeats until the inbox has no more unanswered emails to process.
 
-![image alt](https://github.com/MostafaAI10/Gapminder-R-Analysis/blob/f6bf82ab595ff34ae729b49c43e35b252d74724e/Banner.png)
+![image alt](https://github.com/MostafaAI10/Correspa-AI/blob/fd89df982c4b687e0498ff2884fe7b0438adc320/correspa-ai/workflow.png)
 
 ## Tech Stack
 
