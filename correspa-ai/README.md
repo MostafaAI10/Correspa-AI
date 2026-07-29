@@ -166,7 +166,7 @@ Contributions are welcome. Please open an issue to discuss proposed changes or s
 
 ## License
 
-This project is licensed under the **MIT License**. See [LICENSE](./LICENSE) for full terms.
+This project is licensed under the **MIT License**.
 
 ---
 
