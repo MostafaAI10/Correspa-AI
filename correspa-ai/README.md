@@ -1,143 +1,162 @@
 <!--
-Title: Customer Support Email Automation System | Langchain/Langgraph Integration
-Description: Automate customer support emails with our system built using Langchain/Langgraph. Features include email categorization, query synthesis, draft email creation, and email verification.
-Keywords: Customer support automation, email automation, Langchain, Langgraph, AI email agents, Gmail API, Python email automation, email categorization, email verification, AI agents, AI tools
-Author: kaymen99
+Title: Correspa AI | Autonomous Customer Support Email Automation
+Description: Correspa AI automates customer support email handling with a multi-agent LangGraph workflow, combining categorization, retrieval-augmented generation, and automated quality review.
+Keywords: Correspa AI, customer support automation, email automation, LangChain, LangGraph, AI email agents, Gmail API, Python, RAG, AI agents
 -->
 
-# 🚀 **Customer Support Email Automation with AI Agents and RAG**
+# Correspa AI
 
-## 📩 **FULL TUTORIAL: Build AI-Powered Email Automation Using AI Agents + RAG!** 👉 [Read Now](https://dev.to/kaymen99/boost-customer-support-ai-agents-langgraph-and-rag-for-email-automation-21hj) 🎯   
+**Correspa AI** is an autonomous, multi-agent email support system that monitors a business inbox, understands each incoming message, and produces accurate, on-brand draft replies, without a human having to read every ticket first.
 
-![customer-support-ai-automation](https://github.com/user-attachments/assets/eb061276-0579-4e28-9360-482c8da33a9d)
+It is built around a **LangGraph**-orchestrated pipeline in which specialized AI agents collaborate to categorize incoming mail, research answers from internal knowledge using **Retrieval-Augmented Generation (RAG)**, draft a response, and proofread it before it ever reaches a customer.
 
-## **Introduction**  
+## Why Correspa AI
 
-In today's **fast-paced environment**, customers demand **quick, accurate, and personalized responses**—expectations that can overwhelm traditional support teams. Managing large volumes of emails, categorizing them, crafting appropriate replies, and ensuring quality consumes **significant time and resources**, often leading to **delays or errors**, which can harm customer satisfaction.  
+Support teams are expected to respond quickly, accurately, and consistently — even as ticket volume grows. Manually triaging, researching, and drafting every email is slow and error-prone, and inconsistent answers erode customer trust.
 
-**Customer Support Email Automation** is an **AI solution** designed to enhance **customer communication** for businesses. Leveraging a **Langgraph-driven workflow**, multiple **AI agents** collaborate to efficiently manage, categorize, and respond to customer emails. The system also implements **RAG (Retrieval-Augmented Generation)** technology to deliver **accurate responses** to any business or product-related questions.  
+Correspa AI addresses this by giving each stage of the response process to a dedicated AI agent, so incoming mail is classified correctly, answered with information grounded in real company documentation, and checked for quality before being queued as a Gmail draft — reducing response time while keeping a human in the loop for final approval.
 
-## **Features**  
+## Key Capabilities
 
-### **Email Inbox Management with AI Agents**  
+**Inbox monitoring & triage**
+- Continuously polls a connected Gmail inbox for new, unanswered messages
+- Classifies each email as a *product inquiry*, *customer complaint*, *customer feedback*, or *unrelated*
+- Filters out irrelevant messages automatically so agents only spend effort where it counts
 
-- **Continuously monitors** the agency's Gmail inbox  
-- **Categorizes emails** into '**customer complaint**,' '**product inquiry**,' '**customer feedback**,' or '**unrelated**'  
-- **Automatically handles irrelevant emails** to maintain efficiency  
+**Grounded response generation**
+- For product or service questions, generates targeted retrieval queries and pulls relevant context from a vector store built on the company's own documents (RAG)
+- For complaints and feedback, drafts an empathetic, context-aware reply directly
+- Produces natural, personalized email copy rather than generic templates
 
-### **AI Response Generation**  
+**Automated quality review**
+- A dedicated proofreading agent checks tone, accuracy, and formatting against the original customer message
+- Emails that don't meet the bar are sent back for a rewrite, up to a bounded number of attempts, before being queued
+- Approved responses are saved as Gmail drafts, keeping a human in the loop before anything is sent
 
-- **Quickly drafts emails** for customer complaints and feedback using **Langgraph**  
-- Utilizes **RAG techniques** to answer **product/service-related questions** accurately  
-- **Creates personalized email content** tailored to each customer's needs  
+## How It Works
 
-### **Quality Assurance with AI**  
+1. **Load inbox** — the workflow fetches unanswered emails from Gmail via the Gmail API.
+2. **Categorize** — an LLM agent classifies the email as a product inquiry, complaint/feedback, or unrelated.
+3. **Route**
+   - *Product inquiry* → the system builds RAG queries, retrieves supporting context from the vector store, and passes it to the writer agent.
+   - *Complaint / feedback* → the writer agent drafts a reply directly.
+   - *Unrelated* → the email is skipped.
+4. **Draft** — the writer agent composes a response using the email content (and any retrieved context).
+5. **Proofread** — a reviewer agent checks the draft; if it doesn't pass, it's sent back to the writer for revision (bounded by a retry limit).
+6. **Queue for send** — once approved, the reply is saved as a Gmail draft, and the workflow moves on to the next email in the inbox.
 
-- **Automatically checks** email **quality, formatting, and relevance**  
-- **Ensures every response** meets high standards before reaching the client  
-
-## **How It Works**  
-
-1. **Email Monitoring**: The system **constantly checks** for new emails in the agency's Gmail inbox using the **Gmail API**.  
-2. **Email Categorization**: **AI agents** sort each email into **predefined categories**.  
-3. **Response Generation**:   
-   - **For complaints or feedback**: The system **quickly drafts** a tailored email response.  
-   - **For service/product questions**: The system uses **RAG** to retrieve **accurate information** from agency documents and generates a response.  
-4. **Quality Assurance**: Each draft email undergoes **AI quality and formatting checks**.  
-5. **Sending**: **Approved emails** are sent to the client **promptly**, ensuring **timely communication**.  
-
-## System Flowchart
-
-This is the detailed flow of the system:
-
-[![](https://mermaid.ink/img/pako:eNqllEuP2jAQx7-KZa6AgAB5HFrxFlJBXbarIsIeTDwBi2CntrPAEr57TRIoW_Wwojk585_fvJLxCQeCAvZwGIl9sCFSox_9JUfm6fgTwZkWEo0mnfE3NOYrcXgtNFSpfEHd01jlZjTYxfr49Zyr3YuaTgWawt4ohEUqRQt_wCn6LkUASr3eOw5FYpQXTrjagwR6Q3p-j2hYC8neITcWXC_jXriEyDjQFHXv7b1EabEDiXpiF0eEcY1ME0MAuiLBNkV9_6dk2uidNXD9IaQpjyaBRgP-K2HymKKB_3zkegPqUsJTApKBQqEJN-uMCnKQzWLuj0CjTtYCCqXY3XnMM49_pu1n0tA3iUU4A0L_0odZWZ04luINUjTyn4HTD7PIPaamO4Vm8MYUE9z0mIujQjzonMkmlUtKHyMwHzJkUeSVQjcsKy3FFryS4zjFubJnVG-8RnwoByIS0ivVarV7vFvgq9Uf3LKsz-K9a_bV6hG8f80ePoQP_i_78DY69xF8VOBu-BA-v2Z_DF8UOKX08zguY7NW5j-i5sI4XcItsdmNHSyxZ46UyO0SL_nZ-JFEC7M5Afa0TKCMpUjWG-yFJFLmLYmp2ds-I2tJdjdrTDj2TviAvUbLrjYtt2G1XLdVr7XtZhkfjbnqNJyW4zZt17LdpuO0z2X8LoQJUau6rbbt2la7btmWW6s3s3iLTMxLAHq5zCb5dRcIHrI1Pv8GXQeX4g?type=png)](https://mermaid.live/edit#pako:eNqllEuP2jAQx7-KZa6AgAB5HFrxFlJBXbarIsIeTDwBi2CntrPAEr57TRIoW_Wwojk585_fvJLxCQeCAvZwGIl9sCFSox_9JUfm6fgTwZkWEo0mnfE3NOYrcXgtNFSpfEHd01jlZjTYxfr49Zyr3YuaTgWawt4ohEUqRQt_wCn6LkUASr3eOw5FYpQXTrjagwR6Q3p-j2hYC8neITcWXC_jXriEyDjQFHXv7b1EabEDiXpiF0eEcY1ME0MAuiLBNkV9_6dk2uidNXD9IaQpjyaBRgP-K2HymKKB_3zkegPqUsJTApKBQqEJN-uMCnKQzWLuj0CjTtYCCqXY3XnMM49_pu1n0tA3iUU4A0L_0odZWZ04luINUjTyn4HTD7PIPaamO4Vm8MYUE9z0mIujQjzonMkmlUtKHyMwHzJkUeSVQjcsKy3FFryS4zjFubJnVG-8RnwoByIS0ivVarV7vFvgq9Uf3LKsz-K9a_bV6hG8f80ePoQP_i_78DY69xF8VOBu-BA-v2Z_DF8UOKX08zguY7NW5j-i5sI4XcItsdmNHSyxZ46UyO0SL_nZ-JFEC7M5Afa0TKCMpUjWG-yFJFLmLYmp2ds-I2tJdjdrTDj2TviAvUbLrjYtt2G1XLdVr7XtZhkfjbnqNJyW4zZt17LdpuO0z2X8LoQJUau6rbbt2la7btmWW6s3s3iLTMxLAHq5zCb5dRcIHrI1Pv8GXQeX4g)
+This loop repeats until the inbox has no more unanswered emails to process.
 
 ## Tech Stack
 
-* Langchain & Langgraph: for developing AI agents workflow.
-* Langserve: simplify API development & deployment (using FastAPI).
-* Groq and Gemini APIs: for LLMs access.
-* Google Gmail API
+| Layer | Technology |
+|---|---|
+| Agent orchestration | LangChain & LangGraph |
+| LLM inference | Groq (Llama 3.3 70B) & Google Gemini |
+| Retrieval / vector store | Chroma, Google Generative AI Embeddings |
+| Email integration | Gmail API (google-api-python-client) |
+| API deployment | FastAPI & LangServe |
+| Language | Python |
 
-## How to Run
+## Project Structure
+
+```
+correspa-ai/
+├── main.py                    # Entry point — runs the workflow as a continuous local process
+├── deploy_api.py               # Exposes the workflow as a FastAPI/LangServe endpoint
+├── create_index.py             # Builds/refreshes the Chroma vector store from source documents
+├── requirements.txt             # Python dependencies
+├── workflow.png                # Visual diagram of the LangGraph workflow
+├── data/
+│   └── agency.txt               # Source knowledge documents used to ground RAG responses
+├── db/                          # Persisted Chroma vector store (generated by create_index.py)
+├── src/
+│   ├── agents.py                 # Defines each LLM-backed agent (categorizer, RAG chain, writer, proofreader)
+│   ├── graph.py                  # Assembles the agents into the LangGraph state machine
+│   ├── nodes.py                  # Node functions executed at each step of the graph
+│   ├── prompts.py                # Prompt templates driving each agent's behavior
+│   ├── state.py                  # Shared graph state and Email data model (Pydantic)
+│   ├── structure_outputs.py      # Structured output schemas for LLM responses
+│   └── tools/
+│       └── GmailTools.py          # Gmail API wrapper — fetch, read, and draft emails
+```
+
+## Getting Started
 
 ### Prerequisites
 
 - Python 3.7+
-- Groq api key
-- Google Gemini api key (for embeddings)
-- Gmail API credentials
-- Necessary Python libraries (listed in `requirements.txt`)
+- A Groq API key
+- A Google Gemini API key (used for embeddings)
+- Gmail API credentials for the inbox you want to automate
 
 ### Setup
 
-1. **Clone the repository:**
+1. **Clone the repository**
 
-   ```sh
-   git clone https://github.com/kaymen99/langgraph-email-automation.git
-   cd langgraph-email-automation
-   ```
+```sh
+   git clone https://github.com/<your-username>/correspa-ai.git
+   cd correspa-ai
+```
 
-2. **Create and activate a virtual environment:**
+2. **Create and activate a virtual environment**
 
-   ```sh
+```sh
    python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
+   source venv/bin/activate   # On Windows: venv\Scripts\activate
+```
 
-3. **Install the required packages:**
+3. **Install dependencies**
 
-   ```sh
+```sh
    pip install -r requirements.txt
-   ```
+```
 
-4. **Set up environment variables:**
+4. **Configure environment variables**
 
-   Create a `.env` file in the root directory of the project and add your GMAIL address, we are using the Groq llama-3.1-70b model and the Google gemini embedding model so you must also get API keys to access them:
+   Create a `.env` file in the project root:
 
-   ```env
+```env
    MY_EMAIL=your_email@gmail.com
    GROQ_API_KEY=your_groq_api_key
    GOOGLE_API_KEY=your_gemini_api_key
-   ```
+```
 
-5. **Ensure Gmail API is enabled:**
+5. **Enable the Gmail API**
 
-   Follow [this guide](https://developers.google.com/gmail/api/quickstart/python) to enable Gmail API and obtain your credentials.
+   Follow [Google's Python quickstart guide](https://developers.google.com/gmail/api/quickstart/python) to enable the Gmail API and obtain your OAuth credentials.
 
-### Running the Application
+### Running Correspa AI
 
-1. **Start the workflow:**
+**Run the workflow locally**
 
-   ```sh
-   python main.py
-   ```
+```sh
+python main.py
+```
 
-   The application will start checking for new emails, categorizing them, synthesizing queries, drafting responses, and verifying email quality.
+The application will continuously check the inbox, categorize new emails, generate responses, and verify them before queuing drafts.
 
-2. **Deploy as API:** you can deploy the workflow as an API using Langserve and FastAPI by running the command below:
+**Deploy as an API**
 
-   ```sh
-   python deploy_api.py
-   ```
+```sh
+python deploy_api.py
+```
 
-   The workflow api will be running on `localhost:8000`, you can consult the API docs on `/docs` and you can use the langsergve playground (on the route `/playground`) to test it out.
-
+This starts a FastAPI/LangServe server on `localhost:8000`. API docs are available at `/docs`, and an interactive LangServe playground is available at `/playground`.
 
 ### Customization
 
-You can customize the behavior of each agent by modifying the corresponding methods in the `Nodes` class or the agents prompt `prompts` located in the `src` directory.
-
-You can also add your own agency data into the `data` folder, then you must create your own vector store by running (update first the data path):
+- Adjust agent behavior by editing the corresponding methods in `src/nodes.py` or the prompt templates in `src/prompts.py`.
+- Add your own company/product knowledge to the `data/` folder, then rebuild the vector index:
 
 ```sh
-python create_index.py
+  python create_index.py
 ```
 
-### Contributing
+## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any changes.
+Contributions are welcome. Please open an issue to discuss proposed changes or submit a pull request directly.
 
-### Contact
+## License
 
-If you have any questions or suggestions, feel free to contact me at `aymenMir1001@gmail.com`.
+MIT
