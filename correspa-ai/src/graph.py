@@ -65,5 +65,5 @@ class Workflow():
         workflow.add_edge("send_email", "is_email_inbox_empty")
         workflow.add_edge("skip_unrelated_email", "is_email_inbox_empty" )
 
-        # Compile
+        # compile
         self.app = workflow.compile()
