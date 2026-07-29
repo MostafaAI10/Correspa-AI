@@ -6,6 +6,8 @@ Keywords: Correspa AI, customer support automation, email automation, LangChain,
 
 # Correspa AI
 
+![image alt](https://github.com/MostafaAI10/Gapminder-R-Analysis/blob/f6bf82ab595ff34ae729b49c43e35b252d74724e/Banner.png)
+
 **Correspa AI** is an autonomous, multi-agent email support system that monitors a business inbox, understands each incoming message, and produces accurate, on-brand draft replies, without a human having to read every ticket first.
 
 It is built around a **LangGraph**-orchestrated pipeline in which specialized AI agents collaborate to categorize incoming mail, research answers from internal knowledge using **Retrieval-Augmented Generation (RAG)**, draft a response, and proofread it before it ever reaches a customer.
@@ -37,7 +39,7 @@ Correspa AI addresses this by giving each stage of the response process to a ded
 
 1. **Load inbox**: the workflow fetches unanswered emails from Gmail via the Gmail API.
 2. **Categorize**: an LLM agent classifies the email as a product inquiry, complaint/feedback, or unrelated.
-3. **Route**
+3. **Route**:
    - *Product inquiry* → the system builds RAG queries, retrieves supporting context from the vector store, and passes it to the writer agent.
    - *Complaint / feedback* → the writer agent drafts a reply directly.
    - *Unrelated* → the email is skipped.
@@ -46,6 +48,8 @@ Correspa AI addresses this by giving each stage of the response process to a ded
 6. **Queue for send**: once approved, the reply is saved as a Gmail draft, and the workflow moves on to the next email in the inbox.
 
 This loop repeats until the inbox has no more unanswered emails to process.
+
+![image alt](https://github.com/MostafaAI10/Gapminder-R-Analysis/blob/f6bf82ab595ff34ae729b49c43e35b252d74724e/Banner.png)
 
 ## Tech Stack
 
