@@ -12,9 +12,9 @@ It is built around a **LangGraph**-orchestrated pipeline in which specialized AI
 
 ## Why Correspa AI
 
-Support teams are expected to respond quickly, accurately, and consistently — even as ticket volume grows. Manually triaging, researching, and drafting every email is slow and error-prone, and inconsistent answers erode customer trust.
+Support teams are expected to respond quickly, accurately, and consistently, even as ticket volume grows. Manually triaging, researching, and drafting every email is slow and error-prone, and inconsistent answers erode customer trust.
 
-Correspa AI addresses this by giving each stage of the response process to a dedicated AI agent, so incoming mail is classified correctly, answered with information grounded in real company documentation, and checked for quality before being queued as a Gmail draft — reducing response time while keeping a human in the loop for final approval.
+Correspa AI addresses this by giving each stage of the response process to a dedicated AI agent, so incoming mail is classified correctly, answered with information grounded in real company documentation, and checked for quality before being queued as a Gmail draft, reducing response time while keeping a human in the loop for final approval.
 
 ## Key Capabilities
 
@@ -35,15 +35,15 @@ Correspa AI addresses this by giving each stage of the response process to a ded
 
 ## How It Works
 
-1. **Load inbox** — the workflow fetches unanswered emails from Gmail via the Gmail API.
-2. **Categorize** — an LLM agent classifies the email as a product inquiry, complaint/feedback, or unrelated.
+1. **Load inbox**: the workflow fetches unanswered emails from Gmail via the Gmail API.
+2. **Categorize**: an LLM agent classifies the email as a product inquiry, complaint/feedback, or unrelated.
 3. **Route**
    - *Product inquiry* → the system builds RAG queries, retrieves supporting context from the vector store, and passes it to the writer agent.
    - *Complaint / feedback* → the writer agent drafts a reply directly.
    - *Unrelated* → the email is skipped.
-4. **Draft** — the writer agent composes a response using the email content (and any retrieved context).
-5. **Proofread** — a reviewer agent checks the draft; if it doesn't pass, it's sent back to the writer for revision (bounded by a retry limit).
-6. **Queue for send** — once approved, the reply is saved as a Gmail draft, and the workflow moves on to the next email in the inbox.
+4. **Draft**: the writer agent composes a response using the email content (and any retrieved context).
+5. **Proofread**: a reviewer agent checks the draft; if it doesn't pass, it's sent back to the writer for revision (bounded by a retry limit).
+6. **Queue for send**: once approved, the reply is saved as a Gmail draft, and the workflow moves on to the next email in the inbox.
 
 This loop repeats until the inbox has no more unanswered emails to process.
 
@@ -153,6 +153,9 @@ This starts a FastAPI/LangServe server on `localhost:8000`. API docs are availab
   python create_index.py
 ```
 
+## Attribution
+
+This project is derived from the work of Aimen Kerrour (@kaymen99). The original implementation can be found at langgraph-email-automation.
 ## Contributing
 
 Contributions are welcome. Please open an issue to discuss proposed changes or submit a pull request directly.
