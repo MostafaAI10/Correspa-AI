@@ -5,8 +5,8 @@ Keywords: Correspa AI, customer support automation, email automation, LangChain,
 -->
 
 # Correspa AI
-
-![image alt](https://github.com/MostafaAI10/Gapminder-R-Analysis/blob/f6bf82ab595ff34ae729b49c43e35b252d74724e/Banner.png)
+---
+![image alt](https://github.com/MostafaAI10/Correspa-AI/blob/b266dd8265dd56fd6e6c355125fbc2cb6e41114b/Banner.png)
 
 **Correspa AI** is an autonomous, multi-agent email support system that monitors a business inbox, understands each incoming message, and produces accurate, on-brand draft replies, without a human having to read every ticket first.
 
@@ -166,4 +166,10 @@ Contributions are welcome. Please open an issue to discuss proposed changes or s
 
 ## License
 
-MIT
+This project is licensed under the **MIT License**. See [LICENSE](./LICENSE) for full terms.
+
+---
+
+## Author
+ **MOSTAFA ABDELHAMED** | Junior AI & DS Researcher | NVIDIA Gen AI Certified
+ [LinkedIn](https://www.linkedin.com/in/mostafa-abdelhamed-88a447286)
