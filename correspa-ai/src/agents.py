@@ -10,7 +10,7 @@ from .prompts import *
 
 class Agents():
     def __init__(self):
-        # Choose which LLMs to use for each agent (GPT-4o, Gemini, LLAMA3,...)
+        # Choose which LLMs to use for each agent (GPT-4o, Gemini, LLAMA3)
         llama = ChatGroq(model_name="llama-3.3-70b-versatile", temperature=0.1)
         gemini = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.1)
         
