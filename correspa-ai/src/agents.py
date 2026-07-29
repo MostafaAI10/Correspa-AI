@@ -61,7 +61,7 @@ class Agents():
             llama.with_structured_output(WriterOutput)
         )
 
-        # Verify the generated email
+        # Verify the generated emails
         proofreader_prompt = PromptTemplate(
             template=EMAIL_PROOFREADER_PROMPT, 
             input_variables=["initial_email", "generated_email"]
